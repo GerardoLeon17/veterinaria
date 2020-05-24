@@ -3,32 +3,96 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <title> Veterinaria Mr. Doctor</title>
+    <link rel="icon" type="image/x-icon" href="~/Content/Img/Vet.ico" />
+    <link href="~/Content/Site.css" rel="stylesheet">
+    <link href="//cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css" rel="stylesheet">
+
+    <link href="~/Content/fontawesome-free-5.13.0-web/css/fontawesome.min.css" rel="stylesheet" type="text/css">
+    <script src="https://use.fontawesome.com/releases/v5.12.1/js/all.js" crossorigin="anonymous"></script>
+
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+
+
+
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 
+
+
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <nav class="navbar navbar-expand-lg sticky-top navbar-dark bg-dark">
         <a class="navbar-brand" href="#">Veterinaria</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarText">
             <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
-                    <a class="nav-link" href="@Url.Action("Index","Principal")">Inicio <span class="sr-only">(current)</span></a>
+                <li class="nav-item ">
+                    <a class="nav-link  text-white" href="@Url.Action("Index","Principal")">Inicio <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Acerca</a>
+                    <a class="nav-link  text-white" href="@Url.Action("About","Home")">Acerca de</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Contacto</a>
+                    <a class="nav-link  text-white" href="@Url.Action("Contact","Home")">Contacto</a>
                 </li>
+                @if (User.IsInRole("Admin"))
+                {
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="@Url.Action("Index", "Home")">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="#">Usuarios</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="@Url.Action("Index", "Veterinaries")">Medico</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="@Url.Action("Index", "Owners")">Dueños</a>
+                    </li>
+
+
+
+
+                }
+
+                @if (User.IsInRole("Veterinary"))
+                {
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="@Url.Action("Index", "Home")">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="@Url.Action("Index", "Consults")">Consultas</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="@Url.Action("Index", "Owners")">Dueños</a>
+                    </li>
+
+
+
+                }
+
+                @if (User.IsInRole("Owner"))
+                {
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="@Url.Action("Index", "Home")">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="@Url.Action("Index","Pets")">Mascotas</a>
+                    </li>
+
+                }
+
+
             </ul>
+            <div>
+
+            </div>
+
             <span class="navbar-text">
-                <a href="@Url.Action("Register","Account")">Registro</a>
-                <a href="@Url.Action("Login","Account")">Iniciar Sesion</a>
+                @Html.Partial("_LoginPartial")
             </span>
         </div>
     </nav>
@@ -36,9 +100,18 @@
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+            <div class="justify-content-center">
+                <p class="lead text-center ">&copy; @DateTime.Now.Year Veterinaria Mr Doctor by- Gerardo Leon</p>
+
+            </div>
         </footer>
     </div>
+    <!-- Bootstrap core JavaScript-->
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    <script src="~/Scripts/bootstrap.bundle.min.js"></script>
+    <script src="//cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+
+
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")

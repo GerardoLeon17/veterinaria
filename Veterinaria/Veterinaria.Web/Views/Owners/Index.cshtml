@@ -4,24 +4,40 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th></th>
-    </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
-        </td>
-    </tr>
-}
+    <div class=" padspace">
+        <div class="row justify-content-center">
+            <p class="display-4">
+                Dueños
+            </p>
+        </div>
 
-</table>
+
+
+        <p>
+            <a href="@Url.Action("Create", "Owners")" class="btn btn-success btn-sm btn-icon-split">
+
+                <span class="icon text-white-50"> <i class="fas fa-plus"></i> </span>
+                <span class="text">Crear nuevo</span>
+            </a>
+        </p>
+        <table class="table">
+            <tr>
+                <th></th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+        <tr>
+            <td>
+                <a href="@Url.Action("Edit", "Veterinaries", new { id = item.Id })" class="text-warning"><i class="fas fa-edit"></i> </a> |
+                <a href="@Url.Action("Details", "Veterinaries", new { id = item.Id })" class="text-info"><i class="fas fa-info-circle"></i></a> |
+                <a href="@Url.Action("Delete", "Veterinaries", new { id = item.Id })" class="text-danger"><i class="fas fa-trash-alt"></i></a>
+            </td>
+        </tr>
+            }
+
+        </table>
+        
+        </div>
