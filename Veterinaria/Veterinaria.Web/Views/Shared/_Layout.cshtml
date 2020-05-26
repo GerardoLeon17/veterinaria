@@ -41,49 +41,35 @@
                 @if (User.IsInRole("Admin"))
                 {
                     <li class="nav-item">
-                        <a class="nav-link text-white" href="@Url.Action("Index", "Home")">Home</a>
+                        <a class="nav-link text-white" href="@Url.Action("Index", "Users")">Usuarios</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-white" href="#">Usuarios</a>
+                        <a class="nav-link text-white" href="@Url.Action("Index", "Veterinary")">Medico</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-white" href="@Url.Action("Index", "Veterinaries")">Medico</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-white" href="@Url.Action("Index", "Owners")">Dueños</a>
-                    </li>
-
-
-
-
                 }
 
-                @if (User.IsInRole("Veterinary"))
+                @if (User.IsInRole("Veterinary") || User.IsInRole("Admin"))
                 {
-                    <li class="nav-item">
-                        <a class="nav-link text-white" href="@Url.Action("Index", "Home")">Home</a>
-                    </li>
                     <li class="nav-item">
                         <a class="nav-link text-white" href="@Url.Action("Index", "Consults")">Consultas</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-white" href="@Url.Action("Index", "Owners")">Dueños</a>
-                    </li>
-
-
-
                 }
 
                 @if (User.IsInRole("Owner"))
                 {
                     <li class="nav-item">
-                        <a class="nav-link text-white" href="@Url.Action("Index", "Home")">Home</a>
-                    </li>
-                    <li class="nav-item">
                         <a class="nav-link text-white" href="@Url.Action("Index","Pets")">Mascotas</a>
                     </li>
 
                 }
+                @if (User.IsInRole("Admin"))
+                {
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="@Url.Action("AllPets","Pets")">Mascotas</a>
+                    </li>
+
+                }
+
 
 
             </ul>

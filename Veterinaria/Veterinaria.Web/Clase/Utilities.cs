@@ -41,8 +41,18 @@ namespace Veterinaria.Web.Clase
             if (userclient == null)
             {
                 CreateUserASP("cliente12@veter.com", "cliente123", "Owner");
-            }
+                userclient = clientdb.FindByName("cliente12@veter.com");
 
+
+                var owner = new Owner
+                {
+                    UserId = userclient.Id,
+                };
+
+                db.Owners.Add(owner);
+                db.SaveChanges();
+
+            }
         }
         internal static void CheckVetDefault()
         {

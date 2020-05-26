@@ -193,6 +193,14 @@
     <Compile Include="Migrations\202005200442108_UpdateDb.Designer.cs">
       <DependentUpon>202005200442108_UpdateDb.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202005261814175_UpdatePet.cs" />
+    <Compile Include="Migrations\202005261814175_UpdatePet.Designer.cs">
+      <DependentUpon>202005261814175_UpdatePet.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202005261841365_UpdateOwner.cs" />
+    <Compile Include="Migrations\202005261841365_UpdateOwner.Designer.cs">
+      <DependentUpon>202005261841365_UpdateOwner.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Consult.cs" />
@@ -2076,6 +2084,7 @@
     <Content Include="Views\Owners\Details.cshtml" />
     <Content Include="Views\Owners\Edit.cshtml" />
     <Content Include="Views\Owners\Index.cshtml" />
+    <Content Include="Views\Pets\AllPets.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -2100,6 +2109,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202005200442108_UpdateDb.resx">
       <DependentUpon>202005200442108_UpdateDb.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202005261814175_UpdatePet.resx">
+      <DependentUpon>202005261814175_UpdatePet.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202005261841365_UpdateOwner.resx">
+      <DependentUpon>202005261841365_UpdateOwner.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
