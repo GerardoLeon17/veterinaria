@@ -3,9 +3,13 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.Drawing;
+using System.Drawing.Imaging;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Web;
+using System.Web.Helpers;
 using System.Web.Mvc;
 using Veterinaria.Web.Models;
 
@@ -56,17 +60,41 @@ namespace Veterinaria.Web.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(Pet pet, HttpPostedFile hpb)
+        public ActionResult Create(Pet pet)
         {
+
+
+            HttpPostedFileBase FileBase = Request.Files[0];
+
+            if (FileBase.ContentLength == 0)
+            {
+                ModelState.AddModelError("ImageUrl", "Es necesario seleccionar una imagen.");
+
+            }
+            else
+            {
+                if (FileBase.FileName.EndsWith(".jpg"))
+                {
+                    WebImage image = new WebImage(FileBase.InputStream);
+                    pet.ImgUrl = image.GetBytes();
+                }
+
+                else
+                {
+                    ModelState.AddModelError("ImageUrl", "Solo se aceptan imagenes con formato jpg.");
+
+                }
+            }
+
             if (ModelState.IsValid)
             {
-                if (hpb != null)
-                {
-                    var perfil = System.IO.Path.GetFileName(hpb.FileName);
-                    var direccion = "~/Content/Img/" + pet.Name + "_" + perfil;
-                    hpb.SaveAs(Server.MapPath(direccion));
-                    pet.ImgUrl = pet.Name + "_" + perfil;
-                }
+                //if (hpb != null)
+                //{
+                //    var perfil = System.IO.Path.GetFileName(hpb.FileName);
+                //    var direccion = "~/Content/Img/" + pet.Name + "_" + perfil;
+                //    hpb.SaveAs(Server.MapPath(direccion));
+                //    pet.ImgUrl = pet.Name + "_" + perfil;
+                //}
 
 
                 //SI esta autenticado un Cliente
@@ -105,6 +133,29 @@ namespace Veterinaria.Web.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "Id,Name,PetType,Age,BirthDate,Color,Race,Weight,Height")] Pet pet)
         {
+            byte[] ImagenActual = null;
+
+            HttpPostedFileBase FileBase = Request.Files[0];
+            if (FileBase.ContentLength == 0)
+            {
+                ImagenActual = db.Pets.SingleOrDefault(t => t.Id == pet.Id).ImgUrl;
+                pet.ImgUrl = ImagenActual;
+
+            }
+            else
+            {
+                if (FileBase.FileName.EndsWith(".jpg"))
+                {
+                    WebImage image = new WebImage(FileBase.InputStream);
+                    pet.ImgUrl = image.GetBytes();
+                }
+
+                else
+                {
+                    ModelState.AddModelError("ImageUrl", "Solo se aceptan imagenes con formato jpg.");
+
+                }
+            }
             if (ModelState.IsValid)
             {
                 db.Entry(pet).State = EntityState.Modified;
@@ -147,6 +198,18 @@ namespace Veterinaria.Web.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
+        }
+        public ActionResult getimagen(int id)
+        {
+            Pet produi = db.Pets.Find(id);
+            byte[] byteImage = produi.ImgUrl;
+            MemoryStream memoryStream = new MemoryStream(byteImage);
+            Image image = Image.FromStream(memoryStream);
+            memoryStream = new MemoryStream();
+            image.Save(memoryStream, ImageFormat.Jpeg);
+            memoryStream.Position = 0;
+
+            return File(memoryStream, "image/jpg");
         }
     }
 }

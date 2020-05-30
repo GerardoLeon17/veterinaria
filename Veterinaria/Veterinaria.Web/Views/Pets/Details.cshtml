@@ -44,14 +44,11 @@
                     <h5>Fotografia</h5>
                 </div>
                 <div class="card-header">
-                    @if (Model.ImgUrl== null)
-                    {
-                       <img src="~/Content/Img/Usuariodesconocido.png"class="img-thumbnail" width="200"/>
-                    }
-                    else if (Model.ImgUrl == null)
-                    {
-                        <img src="~/Content/Img/@Model.ImgUrl" />
-                    }
+                   
+                        <img src="@Url.Action("getimagen", "Pets", new{ id=Model.Id}) " width="400" height="250" />
+                        @Html.ValidationMessageFor(model => model.ImgUrl, "", new { @class = "text-danger" })
+
+                 
                 </div>
             </div>
         </div>
@@ -131,6 +128,8 @@
 
 <p>
     <a href="@Url.Action("Edit", "Pets", new { id = Model.Id })" class=" text-white btn btn-warning" style="margin-left:20px;">Editar</a>
-    <a href="@Url.Action("Index", "Pets")" class=" text-white btn btn-danger" style="margin-left:20px;">Regresar</a>
+    <a href="@Url.Action("Delete","Pets", new { id = Model.Id})" class="btn  btn-danger" style="margin-left:20px">Eliminar</a>
+     
+    <a href="@Url.Action("Index", "Pets")" class=" text-white btn btn-dark" style="margin-left:20px;">Regresar</a>
 
 </p>

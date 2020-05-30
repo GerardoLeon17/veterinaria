@@ -202,6 +202,14 @@
     <Compile Include="Migrations\202005261841365_UpdateOwner.Designer.cs">
       <DependentUpon>202005261841365_UpdateOwner.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202005301812194_Petimg.cs" />
+    <Compile Include="Migrations\202005301812194_Petimg.Designer.cs">
+      <DependentUpon>202005301812194_Petimg.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202005301817423_PetImgByte.cs" />
+    <Compile Include="Migrations\202005301817423_PetImgByte.Designer.cs">
+      <DependentUpon>202005301817423_PetImgByte.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Consult.cs" />
@@ -2120,6 +2128,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202005261841365_UpdateOwner.resx">
       <DependentUpon>202005261841365_UpdateOwner.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202005301812194_Petimg.resx">
+      <DependentUpon>202005301812194_Petimg.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202005301817423_PetImgByte.resx">
+      <DependentUpon>202005301817423_PetImgByte.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
