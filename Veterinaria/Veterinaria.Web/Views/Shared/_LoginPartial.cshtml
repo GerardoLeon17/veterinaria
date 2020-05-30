@@ -3,20 +3,20 @@
 {
     using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
     {
-    @Html.AntiForgeryToken()
+        @Html.AntiForgeryToken()
 
-    <ul class="nav navbar-nav navbar-right">
-        <li>
-            @Html.ActionLink( "Bienvenido "+ User.Identity.GetUserName() + " - ", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage", @class = "text-black" })
-        </li>
-        <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
-    </ul>
+        <ul class="nav navbar-nav navbar-right">
+            <li>
+                @Html.ActionLink(User.Identity.GetUserName() + " - ", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage", @class = "text-white" })
+            </li>
+            <li><a href="javascript:document.getElementById('logoutForm').submit()" class="text-white"> <i class="fas fa-sign-out-alt"></i> Cerrar Sesión</a></li>
+        </ul>
     }
 }
 else
 {
-<ul class="nav navbar-nav navbar-right">
-    <li>@Html.ActionLink("Registro", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink", @class = "text-black btn btn-sm" })</li>
-    <li>@Html.ActionLink("Inicio de Sesion", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink", @class = "text-black btn btn-sm " })</li>
-</ul>
+    <ul class="nav navbar-nav navbar-right">
+        @*<li>@Html.ActionLink("Registro", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink", @class = "text-black btn btn-sm" })</li>*@
+        <li>@Html.ActionLink("Inicio de Sesion", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink", @class = "text-black btn btn-sm " })</li>
+    </ul>
 }

@@ -4,9 +4,62 @@
     ViewBag.Title = "Details";
 }
 
-<h2 class="display-4">Detalles</h2>
 
-<div>
+<div class=" row col-md-12 justify-content-between">
+    <div class="col-md-6">
+        <div class="card mb-3">
+            <div class="card-header py-2 bg-dark">
+                <h5 class="text-center m-0 text-white" >@Model.Name</h5>
+                </div>
+            <div class="card-body">
+                <table class="table table-sm">
+                    <tr>
+                        <td>Nombre:</td>
+                        <td>@Model.Name</td>
+                    </tr>
+                    <tr>
+                        <td>Tipo de mascota:</td>
+                        <td>@Model.Name</td>
+                    </tr>
+                    <tr>
+                        <td>Edad:</td>
+                        <td>@Model.Name</td>
+                    </tr>
+                    <tr>
+                        <td>Fecha de nacimiento:</td>
+                        <td>@Model.BirthDate.ToShortDateString();</td>
+                    </tr>
+                    <tr>
+                        <td>Raza:</td>
+                        <td>@Model.Race</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="">
+            <div class="card mb-3">
+                <div class="card-header  text-white bg-dark">
+                    <h5>Fotografia</h5>
+                </div>
+                <div class="card-header">
+                    @if (Model.ImgUrl== null)
+                    {
+                       <img src="~/Content/Img/Usuariodesconocido.png"class="img-thumbnail" width="200"/>
+                    }
+                    else if (Model.ImgUrl == null)
+                    {
+                        <img src="~/Content/Img/@Model.ImgUrl" />
+                    }
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+@*<div>
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -74,10 +127,10 @@
         </dd>
 
     </dl>
-</div>
+</div>*@
 
-<div class="col-md-offset-2 col-md-10">
+<p>
     <a href="@Url.Action("Edit", "Pets", new { id = Model.Id })" class=" text-white btn btn-warning" style="margin-left:20px;">Editar</a>
     <a href="@Url.Action("Index", "Pets")" class=" text-white btn btn-danger" style="margin-left:20px;">Regresar</a>
 
-</div>
+</p>

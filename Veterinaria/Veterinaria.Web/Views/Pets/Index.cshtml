@@ -10,96 +10,154 @@
             Mascotas
         </p>
     </div>
-
+    <hr />
 
 
     <p>
-        <a href="@Url.Action("Create", "Pets")" class="btn btn-success btn-sm btn-icon-split">
+        <a href="@Url.Action("Create","Pets")" class="btn btn-success  btn-icon-split text-white">
 
             <span class="icon text-white-50"> <i class="fas fa-plus"></i> </span>
             <span class="text">Nueva mascota</span>
         </a>
     </p>
-    <table class="table  " id="myTable">
-        <thead>
-            <tr>
-                <th>
-                    @Html.DisplayNameFor(model => model.Name)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.PetType)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Age)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.BirthDate)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Color)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Race)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Weight)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Height)
-                </th>
-                <th></th>
-            </tr>
-        </thead>
 
-        <tbody>
-            @foreach (var item in Model)
-            {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Name)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.PetType)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Age)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.BirthDate)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Color)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Race)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Weight)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Height)
-                </td>
-                <td>
-                    <a href="@Url.Action("Edit", "Pets", new { id = item.Id })" class="text-warning"><i class="fas fa-edit"></i> </a> |
-                    <a href="@Url.Action("Details", "Pets", new { id = item.Id })" class="text-info"><i class="fas fa-info-circle"></i></a> |
-                    <a href="@Url.Action("Delete", "Pets", new { id = item.Id })" class="text-danger"><i class="fas fa-trash-alt"></i></a>
-                </td>
-            </tr>
-            }
+    <div class="row justify-content-center m-3">
+        @foreach (var item in Model)
+        {
+            <div class="col-xl-3 col-md-6 mb-4">
+                <a href="@Url.Action("Details", "Pets",new { id = item.Id })">
 
-        </tbody>
+                    <div class="card border-left-primary shadow h-100 py-2 bg-dark">
+                        <div class="card-body">
+                            <div class="row no-gutters align-items-center">
+                                <div class="col mr-2">
+                                    <div class="text-xs  text-white text-uppercase mb-1">@item.Name</div>
+                                    <div class="h5 mb-0 font-weight-bold text-white">@item.PetType</div>
+                                </div>
+                                <div class="col-auto">
+                                    <i class="fas fa-paw fa-2x text-white"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
 
-    </table>
+        }
+
+    </div>
 </div>
 
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
 
-    <script>
-        $(document).ready(function () {
-            $('#myTable').DataTable();
-        });
-    </script>
+@*<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-title bg-dark">
+                    <h6 class="text-white text-center">Nueva mascota</h6>
+                </div>
+                <div class="modal-body">
+                    @using (Html.BeginForm("Create", "Pets", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                    {
+                        @Html.AntiForgeryToken()
 
-}
+                        <div class="row justify-content-between">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="col-md-5">Nombre</label>
+                                    <div class="col-md-10">
+                                        <input type="text" name="Name" value="" placeholder="Nombre de la mascota" class="form-control" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="col-md-5">Tipo</label>
+                                    <div class="col-md-10">
+                                        <input type="text" name="PetType" value="" class="form-control" />
+                                    </div>
+                                </div>
+                            </div>
 
+                        </div>
+
+                        <div class="row justify-content-between">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="col-md-5">Edad</label>
+                                    <div class="col-md-10">
+                                        <input type="text" name="Age" value="" class="form-control" />
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="col-md-8">Fecha de nacimiento</label>
+                                    <div class="col-md-10">
+                                        <input type="date" name="BirthDate" value="" class="form-control" />
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="row justify-content-between">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="col-md-5">Color</label>
+                                    <div class="col-md-10">
+                                        <input type="text" name="Color" value="" placeholder="Escriba el color" class="form-control" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="col-md-5">Raza</label>
+                                    <div class="col-md-10">
+                                        <input type="text" name="Race" value="" placeholder="Escriba la raza" class="form-control" />
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="row justify-content-between">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="col-md-5">Peso</label>
+                                    <div class="col-md-10">
+                                        <input type="text" name="Weight" value="" placeholder="0.0" class="form-control" />
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="col-md-5">Altura</label>
+                                    <div class="col-md-10">
+                                        <input type="text" name="Height" value="" placeholder="0.0" class="form-control" />
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="form-group">
+                            Fotografia
+                            <div class="col-md-10">
+                                <input type="file" name="hpb" value="" class="form-control-file" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-offset-2 col-md-10">
+                                <input type="submit" value="Create" class="btn btn-success" />
+                            </div>
+                        </div>
+                    }
+                    </div>
+            </div>
+
+        </div>
+    </div>*@

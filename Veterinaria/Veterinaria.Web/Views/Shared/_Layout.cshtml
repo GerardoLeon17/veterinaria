@@ -38,13 +38,16 @@
                 <li class="nav-item">
                     <a class="nav-link  text-white" href="@Url.Action("Contact","Home")">Contacto</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="@Url.Action("Index", "Manage")">Cambiar Password</a>
+                </li>
                 @if (User.IsInRole("Admin"))
                 {
                     <li class="nav-item">
                         <a class="nav-link text-white" href="@Url.Action("Index", "Users")">Usuarios</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-white" href="@Url.Action("Index", "Veterinary")">Medico</a>
+                        <a class="nav-link text-white" href="@Url.Action("Index", "Veterinaries")">Medico</a>
                     </li>
                 }
 
